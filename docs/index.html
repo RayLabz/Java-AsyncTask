@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <link rel="shortcut icon" type="image/png" href="images/EasyJSON.png"/>
+    <link rel="shortcut icon" type="image/png" href="images/asynctask-logo.png"/>
     <meta name="theme-color" content="#f57f17" />
-    <title>EasyJSON - PaNickApps</title>
+    <title>Java AsyncTask - PaNickApps</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
 
 <nav>
-    <div class="nav-wrapper yellow darken-4"></div>
+    <div class="nav-wrapper purple darken-2"></div>
 </nav>
 
 <main>
@@ -23,25 +23,31 @@
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>
-            <h1 class="header center yellow-text text-darken-4">EasyJSON</h1>
+            <h1 class="header center purple-text text-darken-2">AsyncTask</h1>
             <div class="row center">
-                <img class="responsive-img" src="images/EasyJSON.png" width="200" />
+                <img class="responsive-img" src="images/asynctask-logo.png" width="200" />
             </div>
             <div class="row center">
-                <h5 class="header col s12 light">A simple JSON library for PHP</h5>
+                <h5 class="header col s12 light">A port of Android SDK's AsyncTask for plain Java.</h5>
             </div>
             <div class="row center">
-                <a href="https://github.com/panickapps/EasyJSON/raw/master/Downloads/EasyJSON.zip" id="download-button"
-                   class="btn-large waves-effect waves-light yellow darken-4">Download</a><br/><br/>
-                <p class="center-align">or <a href="http://www.github.com/panickapps/EasyJSON">Check out the code on GitHub</a></p>
+                <a href="https://github.com/panickapps/Java-AsyncTask/blob/master/Downloads/AsyncTask.jar" id="download-button"
+                   class="btn-large waves-effect waves-light purple darken-2">Download</a>
             </div>
 
             <p class="justify">
-                EasyJSON is a simple JSON library for PHP. It allows easy conversion and serialization of PHP objects
-                and arrays to JSON format.
+                AsyncTask is a utility library that ports the <a href="https://developer.android.com/reference/android/os/AsyncTask.html">Android SDK's AsyncTask class</a>
+                for use in plain Java applications.
             </p>
 
-            <p><b>Supported PHP versions:</b> 7.0+</p>
+            <p>It enables the easier use of threads in Java applications by allowing you to perform operations on non-UI
+                threads and publish their results on the UI thread without having to deal with Threads, Executors and Handlers.
+                AsyncTask does not follow any framework or specific SDK, so you can use it in any plain Java (or Java EE)
+                application. However, it should not be used within the Android SDK, where the use of the native AsyncTask
+                class should be highly preferred.
+            </p>
+
+            <p><b>The package requires Java 8+</b></p>
 
             <hr/>
 
@@ -51,13 +57,20 @@
                  <li><a href="#guide">Guide</a>
                  <ul class="browser-default">
                      <li><a href="#downloadAndImport">Download and import</a></li>
-                     <li><a href="#customClass">Creating a custom class</a></li>
-                     <li><a href="#serialize">Serialize/Encode to JSON text</a></li>
-                     <li><a href="#nesting">Nesting objects</a></li>
-                     <li><a href="#arrays">Working with arrays</a></li>
+                     <li><a href="#createAsyncTask">Creating an AsyncTask</a></li>
+                     <li>
+                         <a href="#implementMethods">Implementing the methods</a>
+                         <ul class="browser-default">
+                             <li><a href="#onpreexecute">onPreExecute()</a></li>
+                             <li><a href="#doinbackground">doInBackground()</a></li>
+                             <li><a href="#onpostexecute">onPostExecute</a></li>
+                         </ul>
+                     </li>
+                     <li><a href="#progressUpdates">Progress updates</a></li>
                  </ul>
                  </li>
                 <li><a href="#example">Full example</a></li>
+                <li><a href="#documentation">Documentation</a></li>
                 <li><a href="#usage">License</a></li>
                 <li><a href="#bugreport">Bug reporting</a></li>
             </ul>
@@ -67,234 +80,144 @@
             <h5 id="downloadAndImport">Download and import</h5>
 
             <p>
-                You can download EasyJSON <a href="https://github.com/panickapps/EasyJSON/raw/master/Downloads/EasyJSON.zip">here</a>.
-                Place the EasyJSON folder in the root folder of your code and use the following code to import it in your PHP scripts:
+                You can download AsyncTask for plain Java <a href="https://github.com/panickapps/Java-AsyncTask/blob/master/Downloads/AsyncTask.jar">here</a>.
+                Then import it in your project as a Java library (.jar).
             </p>
 
-            <pre class="prettyprint php">require_once("EasyJSON\EasyJSON.php");</pre>
-
-            <p>For simplicity, you can use PHP aliasing for <span class="code">JsonObject</span>:</p>
-
-            <pre class="prettyprint php">use EasyJSON\JsonObject as JsonObject;</pre>
-
-            <h5 id="customClass">Creating a custom class</h5>
+            <h5 id="createAsyncTask">Creating an AsyncTask</h5>
 
             <p>
-                A custom class can be converted to JSON format if it extends the <span class="code">JsonObject</span> class.
-                Therefore, all of the classes that are going to be converted to JSON format need to extend this class.
-                The following example shows how to create an Address class. The class has four properties,
-                road, number, state and country, along with a constructor and methods for setting and getting these properties.
+                AsyncTask for Java is a simplified port of the Android SDK's version of AsyncTask. While it is designed to
+                be very similar in use, it omits some functionality which is not frequently used. From this point, we are assuming
+                that you already known the basics of AsyncTask usage from the Android SDK. Otherwise, you can
+                <a href="https://alvinalexander.com/android/asynctask-examples-parameters-callbacks-executing-canceling">refer to this guide</a>
+                by Alvin Alexander to learn how it works.
+                You can use AsyncTask by creating a new class that extends the AsyncTask class:
             </p>
 
-            <pre class="prettyprint php">
-use EasyJSON\JsonObject as JsonObject;
-
-class Address extends JsonObject {
-
-    private $road;
-    private $number;
-    private $state;
-    private $country;
-
-    public function __construct($road, $number, $state, $country) {
-        $this->road = $road;
-        $this->number = $number;
-        $this->state = $state;
-        $this->country = $country;
-    }
-
-    public function getRoad() {
-        return $this->road;
-    }
-
-    public function setRoad($road) {
-        $this->road = $road;
-    }
-
-    public function getNumber() {
-        return $this->number;
-    }
-
-    public function setNumber($number) {
-        $this->number = $number;
-    }
-
-    public function getState() {
-        return $this->state;
-    }
-
-    public function setState($state) {
-        $this->state = $state;
-    }
-
-    public function getCountry() {
-        return $this->country;
-    }
-
-    public function setCountry($country) {
-        $this->country = $country;
-    }
-
+            <pre class="prettyprint java">
+public class MyAsyncTask extends AsyncTask&lt;Void, Void, Void&gt; {
+    ...
 }</pre>
 
-            <p>If your custom class is declared in a separate file import it using:</p>
+            <p>Note that the AsyncTask class takes three templated type arguments just like the Android AsyncTask, which are:</p>
 
-            <pre class="prettyprint php">require_once("Address.php");</pre>
+            <ul class="browser-default">
+                <li>Parameter type</li>
+                <li>Progress type</li>
+                <li>Result type</li>
+            </ul>
 
-            <p>You can instantiate an object of a custom class using:</p>
+            <h5 id="implementMethods">Implementing the methods</h5>
 
-            <pre class="prettyprint php">$address = new Address("myRoad", 10, "myState", "myCountry");</pre>
+            <p>You can freely define your own methods and attributes in any subclass you create. However, you MUST
+                implement the following three methods provided by the base class:</p>
 
-            <h5 id="serialize">Serialize/Encode to JSON text</h5>
+            <ul class="browser-default">
+                <li>onPreExecute()</li>
+                <li>doInBackground()</li>
+                <li>onPostExecute()</li>
+            </ul>
 
-            <p>You can use the <span class="code">toJSON()</span> method to serialize/encode an object into its JSON text representation:</p>
+            <h6 id="onpreexecute">onPreExecute()</h6>
 
-            <pre class="prettyprint php">echo $address->toJson();</pre>
+            <p>
+                The onPreExecute() method executes code <i>on the UI thread</i>. It is usually used to prepare workload for execution
+                while still being able to access the UI thread. An example would be URL sanitization, and initialization
+                of certain UI elements. The following code shows an example implementation of the onPreExecute() method that prints
+                a message on the console:
+            </p>
 
-            <p>This will print: <span class="code">{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}</span></p>
-
-            <h5 id="nesting">Nesting objects</h5>
-
-            <p>In some cases, you will need to create a custom object inside another object. To show an example, we will
-            use a Person class, which will include the properties firstName, lastName, address and friends where the property
-            address will be an object of class Address:</p>
-
-            <pre class="prettyprint php">
-use EasyJSON\JsonObject as JsonObject;
-
-class Person extends JsonObject {
-
-    private $firstName;
-    private $lastName;
-    private $address; //This property should contain an object of type Address.
-    private $friends;
-
-    public function __construct($firstName, $lastName, $address) {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->address = $address;
-        $this->friends = array();
-    }
-
-    public function getFirstName() {
-        return $this->firstName;
-    }
-
-    public function setFirstName($firstName) {
-        $this->firstName = $firstName;
-    }
-
-    public function getLastName() {
-        return $this->lastName;
-    }
-
-    public function setLastName($lastName) {
-        $this->lastName = $lastName;
-    }
-
-
-    public function getAddress() {
-        return $this->address;
-    }
-
-    public function setAddress($address) {
-        $this->address = $address;
-    }
-
-    public function getFriends() {
-        return $this->friends;
-    }
-
-    public function addFriend($friend) {
-        array_push($this->friends, $friend);
-    }
-
+            <pre class="prettyprint java">
+@Override
+protected void onPreExecute() {
+    stringBuilder.append("OnPreExecute" + System.lineSeparator());
 }</pre>
 
-            <p>Now, let us create a Person object that contains the address we have created before:</p>
+            <h6 id="doinbackground">doInBackground()</h6>
 
-            <pre class="prettyprint php">
-require_once("Person.php");
-$person = new Person("John", "Doe", $address);
-echo $person->toJson();</pre>
+            <p>
+                The doInBackground() method executes code <i>on a non-UI thread</i> - this is done to prevent the UI from
+            freezing during long operations such as database queries, HTTP calls or file reads. The code below shows an example where
+                numbers between 0 and 1,000,000 are printed on the screen - a long operation that would stall the application.
+                This method receives a set of parameters and returns a result.
+            </p>
 
-            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe",<b>"address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}</b>}</span></p>
+            <pre class="prettyprint java">
+@Override
+protected Void doInBackground(Void... voids) {
+    for (long i = 0; i < 1000000; i++) {
+        System.out.println(i + System.lineSeparator());
+    }
+    return null;
+}</pre>
 
-            <h5 id="arrays">Working with arrays</h5>
+            <h6 id="onpostexecute">onPostExecute()</h6>
 
-            <p>You can include arrays in your custom classes like in the Person class:</p>
+            <p>
+                The onPostExecute() method executes code <i>on the UI thread</i> and receives the result of the doInBackground() method.
+            </p>
 
-            <pre class="prettyprint php">
-...
+            <pre class="prettyprint java">
+@Override
+protected void onPostExecute(Void aVoid) {
+    System.out.println("OnPostExecute" + System.lineSeparator());
+}</pre>
 
-private $firstName;
-private $lastName;
-private $address; //This property should contain an object of type Address.
-<mark>private $friends;</mark>
+            <h5 id="progressUpdates">Progress updates</h5>
 
-public function __construct($firstName, $lastName, $address) {
-    $this->firstName = $firstName;
-    $this->lastName = $lastName;
-    $this->address = $address;
-    <mark>$this->friends = array();</mark>
+            <p>
+                You can update the progress indication on the UI while the task is running by using the methods <span class="code">publishProgress()</span>
+                and <span class="code">onProgressUpdate()</span>. The <span class="code">publishProgress()</span> method is used within doInBackground() to
+                publish a set of Progress objects. Calling this method automatically invokes <span class="code">onProgressUpdate()</span> on the UI thread,
+                which you need to implement. <span class="code">onProgressUpdate()</span> can be used to update the UI by using the progress provided by
+                <span class="code">publishProgress()</span>. The code below shows how to implement the <span class="code">onProgressUpdate() method </span>
+                and how to call the <span class="code">publishProgress()</span> in doInBackground():
+            </p>
+
+            <pre class="prettyprint">
+@Override
+protected void onProgressUpdate(Integer... integers) {
+    super.onProgressUpdate(integers);
+    System.out.println(integers[0] + System.lineSeparator());
 }
 
 ...
 
-public function <mark>getFriends</mark>() {
-    return $this->friends;
-}
-
-public function <mark>addFriend</mark>($friend) {
-    array_push($this->friends, $friend);
-}
-
-...</pre>
-
-            <p>Let us create a second person, and assign it as a friend of the first person we have created:</p>
-
-            <pre class="prettyprint php">
-$person2 = new Person("Jane", "Jones", $address);
-$person->addFriend($person2);
-echo $person->toJson();</pre>
-
-            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe","address":{"road":"myRoad",
-                "number":10,"state":"myState","country":"myCountry"},<b>"friends":[{"firstName":"Jane","lastName":"Jones",
-                    "address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}}]</b>}</span></p>
-
-            <p>Let's add another person as friend to the first person:</p>
-
-            <pre class="prettyprint php">
-$person3 = new Person("George", "Michaels", $address);
-$person->addFriend($person3);
-echo $person->toJson();
-            </pre>
-
-            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe","address":{"road":"myRoad",
-                "number":10,"state":"myState","country":"myCountry"},<b>"friends":[{"firstName":"Jane","lastName":"Jones",
-                "address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}},{"firstName":"George",
-                    "lastName":"Michaels","address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}}]</b>}</span></p>
-
+@Override
+protected Void doInBackground(Void... voids) {
+    for (long i = 0; i < 1000000; i++) {
+        stringBuilder.append("[" + name + "] -> " + i + System.lineSeparator());
+        if (i % 100000 == 0) {
+            <mark>publishProgress((int) i);</mark>
+        }
+    }
+    return null;
+}</pre>
 
             <h4 id="example">Full example</h4>
 
-            <p>Please see the <a href="https://github.com/panickapps/EasyJSON/tree/master/Examples">complete example here.</a></p>
+            <p>Please see the <a href="https://github.com/panickapps/Java-AsyncTask/tree/master/Source/Test/">complete example here.</a></p>
+
+            <h4 id="documentation">Documentation</h4>
+
+            <p>Visit the <a href="documentation">documentation.</a></p>
 
             <h4 id="usage">License</h4>
 
             <p>
-                EasyJSON is released under the <a href="https://github.com/panickapps/EasyJSON/blob/master/LICENSE">Apache 2.0 license</a>.
+                AsyncTask for plain Java is released under the <a href="https://github.com/panickapps/Java-AsyncTask/blob/master/LICENSE">Apache 2.0 license</a>.
             </p>
 
             <h4 id="source">Source code</h4>
 
             <p>
-                You can find the source code at the project's repository <a href="https://github.com/panickapps/EasyJSON/">here</a>.
+                You can find the source code at the project's repository <a href="https://github.com/panickapps/Java-AsyncTask/">here</a>.
             </p>
 
             <h4 id="bugreport">Bug reporting</h4>
 
-            <p>Please report bugs <a href="mailto:panickapps@gmail.com?subject=EasyJSON">here</a>.</p>
+            <p>Please report bugs <a href="mailto:panickapps@gmail.com?subject=AsyncTask for plain Java">here</a>.</p>
 
             <br/><br/>
         </div>
