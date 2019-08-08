@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <link rel="shortcut icon" type="image/png" href="images/EasyJSON.png"/>
+    <meta name="theme-color" content="#f57f17" />
+    <title>EasyJSON - PaNickApps</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper yellow darken-4"></div>
+</nav>
+
+<main>
+
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center yellow-text text-darken-4">EasyJSON</h1>
+            <div class="row center">
+                <img class="responsive-img" src="images/EasyJSON.png" width="200" />
+            </div>
+            <div class="row center">
+                <h5 class="header col s12 light">A simple JSON library for PHP</h5>
+            </div>
+            <div class="row center">
+                <a href="https://github.com/panickapps/EasyJSON/raw/master/Downloads/EasyJSON.zip" id="download-button"
+                   class="btn-large waves-effect waves-light yellow darken-4">Download</a><br/><br/>
+                <p class="center-align">or <a href="http://www.github.com/panickapps/EasyJSON">Check out the code on GitHub</a></p>
+            </div>
+
+            <p class="justify">
+                EasyJSON is a simple JSON library for PHP. It allows easy conversion and serialization of PHP objects
+                and arrays to JSON format.
+            </p>
+
+            <p><b>Supported PHP versions:</b> 7.0+</p>
+
+            <hr/>
+
+            <h4>Contents</h4>
+
+            <ul class="browser-default">
+                 <li><a href="#guide">Guide</a>
+                 <ul class="browser-default">
+                     <li><a href="#downloadAndImport">Download and import</a></li>
+                     <li><a href="#customClass">Creating a custom class</a></li>
+                     <li><a href="#serialize">Serialize/Encode to JSON text</a></li>
+                     <li><a href="#nesting">Nesting objects</a></li>
+                     <li><a href="#arrays">Working with arrays</a></li>
+                 </ul>
+                 </li>
+                <li><a href="#example">Full example</a></li>
+                <li><a href="#usage">License</a></li>
+                <li><a href="#bugreport">Bug reporting</a></li>
+            </ul>
+
+            <h4 id="guide">Guide</h4>
+
+            <h5 id="downloadAndImport">Download and import</h5>
+
+            <p>
+                You can download EasyJSON <a href="https://github.com/panickapps/EasyJSON/raw/master/Downloads/EasyJSON.zip">here</a>.
+                Place the EasyJSON folder in the root folder of your code and use the following code to import it in your PHP scripts:
+            </p>
+
+            <pre class="prettyprint php">require_once("EasyJSON\EasyJSON.php");</pre>
+
+            <p>For simplicity, you can use PHP aliasing for <span class="code">JsonObject</span>:</p>
+
+            <pre class="prettyprint php">use EasyJSON\JsonObject as JsonObject;</pre>
+
+            <h5 id="customClass">Creating a custom class</h5>
+
+            <p>
+                A custom class can be converted to JSON format if it extends the <span class="code">JsonObject</span> class.
+                Therefore, all of the classes that are going to be converted to JSON format need to extend this class.
+                The following example shows how to create an Address class. The class has four properties,
+                road, number, state and country, along with a constructor and methods for setting and getting these properties.
+            </p>
+
+            <pre class="prettyprint php">
+use EasyJSON\JsonObject as JsonObject;
+
+class Address extends JsonObject {
+
+    private $road;
+    private $number;
+    private $state;
+    private $country;
+
+    public function __construct($road, $number, $state, $country) {
+        $this->road = $road;
+        $this->number = $number;
+        $this->state = $state;
+        $this->country = $country;
+    }
+
+    public function getRoad() {
+        return $this->road;
+    }
+
+    public function setRoad($road) {
+        $this->road = $road;
+    }
+
+    public function getNumber() {
+        return $this->number;
+    }
+
+    public function setNumber($number) {
+        $this->number = $number;
+    }
+
+    public function getState() {
+        return $this->state;
+    }
+
+    public function setState($state) {
+        $this->state = $state;
+    }
+
+    public function getCountry() {
+        return $this->country;
+    }
+
+    public function setCountry($country) {
+        $this->country = $country;
+    }
+
+}</pre>
+
+            <p>If your custom class is declared in a separate file import it using:</p>
+
+            <pre class="prettyprint php">require_once("Address.php");</pre>
+
+            <p>You can instantiate an object of a custom class using:</p>
+
+            <pre class="prettyprint php">$address = new Address("myRoad", 10, "myState", "myCountry");</pre>
+
+            <h5 id="serialize">Serialize/Encode to JSON text</h5>
+
+            <p>You can use the <span class="code">toJSON()</span> method to serialize/encode an object into its JSON text representation:</p>
+
+            <pre class="prettyprint php">echo $address->toJson();</pre>
+
+            <p>This will print: <span class="code">{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}</span></p>
+
+            <h5 id="nesting">Nesting objects</h5>
+
+            <p>In some cases, you will need to create a custom object inside another object. To show an example, we will
+            use a Person class, which will include the properties firstName, lastName, address and friends where the property
+            address will be an object of class Address:</p>
+
+            <pre class="prettyprint php">
+use EasyJSON\JsonObject as JsonObject;
+
+class Person extends JsonObject {
+
+    private $firstName;
+    private $lastName;
+    private $address; //This property should contain an object of type Address.
+    private $friends;
+
+    public function __construct($firstName, $lastName, $address) {
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->address = $address;
+        $this->friends = array();
+    }
+
+    public function getFirstName() {
+        return $this->firstName;
+    }
+
+    public function setFirstName($firstName) {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName() {
+        return $this->lastName;
+    }
+
+    public function setLastName($lastName) {
+        $this->lastName = $lastName;
+    }
+
+
+    public function getAddress() {
+        return $this->address;
+    }
+
+    public function setAddress($address) {
+        $this->address = $address;
+    }
+
+    public function getFriends() {
+        return $this->friends;
+    }
+
+    public function addFriend($friend) {
+        array_push($this->friends, $friend);
+    }
+
+}</pre>
+
+            <p>Now, let us create a Person object that contains the address we have created before:</p>
+
+            <pre class="prettyprint php">
+require_once("Person.php");
+$person = new Person("John", "Doe", $address);
+echo $person->toJson();</pre>
+
+            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe",<b>"address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}</b>}</span></p>
+
+            <h5 id="arrays">Working with arrays</h5>
+
+            <p>You can include arrays in your custom classes like in the Person class:</p>
+
+            <pre class="prettyprint php">
+...
+
+private $firstName;
+private $lastName;
+private $address; //This property should contain an object of type Address.
+<mark>private $friends;</mark>
+
+public function __construct($firstName, $lastName, $address) {
+    $this->firstName = $firstName;
+    $this->lastName = $lastName;
+    $this->address = $address;
+    <mark>$this->friends = array();</mark>
+}
+
+...
+
+public function <mark>getFriends</mark>() {
+    return $this->friends;
+}
+
+public function <mark>addFriend</mark>($friend) {
+    array_push($this->friends, $friend);
+}
+
+...</pre>
+
+            <p>Let us create a second person, and assign it as a friend of the first person we have created:</p>
+
+            <pre class="prettyprint php">
+$person2 = new Person("Jane", "Jones", $address);
+$person->addFriend($person2);
+echo $person->toJson();</pre>
+
+            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe","address":{"road":"myRoad",
+                "number":10,"state":"myState","country":"myCountry"},<b>"friends":[{"firstName":"Jane","lastName":"Jones",
+                    "address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}}]</b>}</span></p>
+
+            <p>Let's add another person as friend to the first person:</p>
+
+            <pre class="prettyprint php">
+$person3 = new Person("George", "Michaels", $address);
+$person->addFriend($person3);
+echo $person->toJson();
+            </pre>
+
+            <p>This should print: <span class="code">{"firstName":"John","lastName":"Doe","address":{"road":"myRoad",
+                "number":10,"state":"myState","country":"myCountry"},<b>"friends":[{"firstName":"Jane","lastName":"Jones",
+                "address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}},{"firstName":"George",
+                    "lastName":"Michaels","address":{"road":"myRoad","number":10,"state":"myState","country":"myCountry"}}]</b>}</span></p>
+
+
+            <h4 id="example">Full example</h4>
+
+            <p>Please see the <a href="https://github.com/panickapps/EasyJSON/tree/master/Examples">complete example here.</a></p>
+
+            <h4 id="usage">License</h4>
+
+            <p>
+                EasyJSON is released under the <a href="https://github.com/panickapps/EasyJSON/blob/master/LICENSE">Apache 2.0 license</a>.
+            </p>
+
+            <h4 id="source">Source code</h4>
+
+            <p>
+                You can find the source code at the project's repository <a href="https://github.com/panickapps/EasyJSON/">here</a>.
+            </p>
+
+            <h4 id="bugreport">Bug reporting</h4>
+
+            <p>Please report bugs <a href="mailto:panickapps@gmail.com?subject=EasyJSON">here</a>.</p>
+
+            <br/><br/>
+        </div>
+    </div>
+
+</main>
+
+<footer class="page-footer yellow darken-4">
+        <div class="container">
+            <div class="center light">Made by <a class="orange-text text-lighten-3" href="http://www.panickapps.com">PaNickApps</a></div>
+            <br/>
+        </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</body>
+</html>
