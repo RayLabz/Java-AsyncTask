@@ -131,7 +131,7 @@ public class MyAsyncTask extends AsyncTask&lt;Void, Void, Void&gt; {
             <pre class="prettyprint java">
 @Override
 protected void onPreExecute() {
-    stringBuilder.append("OnPreExecute" + System.lineSeparator());
+    System.out.println("OnPreExecute" + System.lineSeparator());
 }</pre>
 
             <h6 id="doinbackground">doInBackground()</h6>
