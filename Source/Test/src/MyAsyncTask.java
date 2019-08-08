@@ -6,7 +6,7 @@ import java.io.FileWriter;
  * This task is a simple example on how to implement an AsyncTask.
  * It prints simple messages and writes data to files asynchronously.
  */
-public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
+public class MyAsyncTask extends AsyncTask<Void, Integer, Long> {
 
     private final String name;
     private final StringBuilder stringBuilder = new StringBuilder();
@@ -25,14 +25,16 @@ public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected Long doInBackground(Void... voids) {
+        long result = 0;
         for (long i = 0; i < 1000000; i++) {
             stringBuilder.append("[" + name + "] -> " + i + System.lineSeparator());
+            result += i;
             if (i % 100000 == 0) {
                 publishProgress((int) i);
             }
         }
-        return null;
+        return result;
     }
 
     @Override
@@ -42,7 +44,8 @@ public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(Long result) {
+        System.out.println("Result => " + result);
         stringBuilder.append("[" + name + "] -> " + "OnPostExecute" + System.lineSeparator());
 
         //Also write it to file:
