@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <link rel="shortcut icon" type="image/png" href="images/asynctask-logo.png"/>
-    <meta name="theme-color" content="#f57f17" />
+    <meta name="theme-color" content="#7b1fa2" />
     <title>Java AsyncTask - PaNickApps</title>
 
     <!-- CSS  -->
@@ -66,6 +66,7 @@
                              <li><a href="#onpostexecute">onPostExecute</a></li>
                          </ul>
                      </li>
+                     <li><a href="#execution">Executing a task</a></li>
                      <li><a href="#progressUpdates">Progress updates</a></li>
                  </ul>
                  </li>
@@ -163,6 +164,28 @@ protected Void doInBackground(Void... voids) {
 protected void onPostExecute(Void aVoid) {
     System.out.println("OnPostExecute" + System.lineSeparator());
 }</pre>
+
+            <h5 id="execution">Executing a task</h5>
+
+            <p>
+                You can execute an AsyncTask by using the <span class="code">execute()</span> method:
+            </p>
+
+            <pre class="prettyprint java">
+asyncTask.execute();</pre>
+
+            <p>
+                If your AsyncTask accepts any parameters, you can pass them in the following way:
+            </p>
+
+            <pre class="prettyprint java">
+asyncTask.execute("param1", "param2", "param3");</pre>
+
+            <p>Alternatively, you can use an array and pass the array as an argument:</p>
+
+            <pre class="prettyprint java">
+String [] paramsArray = { "param1", "param2", "param3" };
+asyncTask.execute(paramsArray);</pre>
 
             <h5 id="progressUpdates">Progress updates</h5>
 
