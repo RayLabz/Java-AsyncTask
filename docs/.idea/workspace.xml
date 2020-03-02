@@ -2,9 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5179dd21-cd53-4c93-b61b-6a5fa79129bc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/AsyncTask.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/AsyncTask.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/src/com/panickapps/javaasynctask/AsyncTask.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Source/Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/Test/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/package-list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="82" column="15" lean-forward="true" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
+            <state relative-caret-position="41">
+              <caret line="244" column="22" lean-forward="true" selection-start-line="244" selection-start-column="22" selection-end-line="244" selection-end-column="22" />
               <folding>
                 <element signature="e#4931#4935#0" expanded="true" />
                 <element signature="e#4951#4955#0" expanded="true" />
@@ -39,6 +63,9 @@
       <find>here</find>
       <find>download</find>
     </findStrings>
+    <replaceStrings>
+      <replace>RayLabz</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -62,8 +89,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -104,15 +131,15 @@
       <workItem from="1565429905577" duration="21000" />
       <workItem from="1569395666931" duration="53000" />
       <workItem from="1569396172858" duration="12000" />
+      <workItem from="1583177124330" duration="48000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4485000" />
+    <option name="totallyTimeSpent" value="4533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -142,8 +169,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="82" column="15" lean-forward="true" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
+        <state relative-caret-position="41">
+          <caret line="244" column="22" lean-forward="true" selection-start-line="244" selection-start-column="22" selection-end-line="244" selection-end-column="22" />
           <folding>
             <element signature="e#4931#4935#0" expanded="true" />
             <element signature="e#4951#4955#0" expanded="true" />

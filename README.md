@@ -8,10 +8,10 @@ It enables the easier use of threads in Java applications by allowing you to per
 <b>The package requires Java 8+</b>
 
 ## Download
-[Download here](https://github.com/panickapps/Java-AsyncTask/blob/master/Downloads/AsyncTask.jar)
+[Download here](https://github.com/RayLabz/Java-AsyncTask/blob/master/Downloads/AsyncTask.jar)
 
 ## Guide
-[Visit our guide](https://panickapps.github.io/Java-AsyncTask/) to find out more.
+[Visit our guide](https://RayLabz.github.io/Java-AsyncTask/) to find out more.
 
 ## Full example
 Please see the complete example here.
