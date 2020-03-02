@@ -1,4 +1,4 @@
-package com.panickapps.javaasynctask;
+package main.java.com.raylabz.javaasynctask;
 
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Platform;
@@ -13,13 +13,13 @@ import java.util.ArrayList;
  * Important note: Do not use this with the Android SDK, use the native AsyncTask instead.
  * This package is destined for use in plain Java applications ONLY - Java SDKs are NOT supported.
  *
- * Created by PaNickApps - 2019
- * Visit http://www.panickapps.com
+ * Created by RayLabz - 2019
+ * Visit http://www.RayLabz.com
  *
  * Java AsyncTask - A port of Android SDK's AsyncTask for plain Java.
  * Perform background operations and publish results on the UI thread without working with threads and handlers.
- * Repository: https://github.com/panickapps/Java-AsyncTask
- * Guide: https://panickapps.github.io/Java-AsyncTask
+ * Repository: https://github.com/RayLabz/Java-AsyncTask
+ * Guide: https://RayLabz.github.io/Java-AsyncTask
  */
 public abstract class AsyncTask <Parameter, Progress, Result> {
 
@@ -32,7 +32,7 @@ public abstract class AsyncTask <Parameter, Progress, Result> {
         RUNNING
     }
 
-    private static final String ASYNCTASK_THREAD_NAME_IDENTIFIER = "com.panickapps.javaasynctask-Thread";
+    private static final String ASYNCTASK_THREAD_NAME_IDENTIFIER = "com.RayLabz.javaasynctask-Thread";
     private static final ArrayList<AsyncTask> tasks = new ArrayList<>();
     private static long ASYNCTASK_THREAD_NEXT_ID = 0;
     private static JFXPanel FX_PANEL_INIT;
