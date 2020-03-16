@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5179dd21-cd53-4c93-b61b-6a5fa79129bc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Source/AsyncTask/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/AsyncTask.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/AsyncTask/AsyncTask.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Source/AsyncTask/src/com/panickapps/javaasynctask/AsyncTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Source/Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Source/Test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/allclasses-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/allclasses-noframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/constant-values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/deprecated-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/package-list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -44,11 +19,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="244" column="22" lean-forward="true" selection-start-line="244" selection-start-column="22" selection-end-line="244" selection-end-column="22" />
+            <state relative-caret-position="272">
+              <caret line="101" column="155" selection-start-line="101" selection-start-column="155" selection-end-line="101" selection-end-column="155" />
               <folding>
-                <element signature="e#4931#4935#0" expanded="true" />
-                <element signature="e#4951#4955#0" expanded="true" />
+                <element signature="e#4001#4005#0" expanded="true" />
+                <element signature="e#4015#4019#0" expanded="true" />
+                <element signature="e#4022#4026#0" expanded="true" />
+                <element signature="e#4033#4037#0" expanded="true" />
+                <element signature="e#4048#4052#0" expanded="true" />
+                <element signature="e#4060#4064#0" expanded="true" />
+                <element signature="e#4067#4071#0" expanded="true" />
+                <element signature="e#4081#4085#0" expanded="true" />
+                <element signature="e#4094#4098#0" expanded="true" />
+                <element signature="e#4109#4113#0" expanded="true" />
+                <element signature="e#4116#4120#0" expanded="true" />
+                <element signature="e#4127#4131#0" expanded="true" />
+                <element signature="e#4136#4140#0" expanded="true" />
+                <element signature="e#4148#4152#0" expanded="true" />
+                <element signature="e#4153#4157#0" expanded="true" />
+                <element signature="e#4168#4172#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,10 +67,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="378" />
-    <option name="y" value="-9" />
-    <option name="width" value="1402" />
-    <option name="height" value="1002" />
+    <option name="x" value="379" />
+    <option name="y" value="-8" />
+    <option name="width" value="1401" />
+    <option name="height" value="1001" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -132,14 +121,16 @@
       <workItem from="1569395666931" duration="53000" />
       <workItem from="1569396172858" duration="12000" />
       <workItem from="1583177124330" duration="48000" />
+      <workItem from="1584392588776" duration="259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4533000" />
+    <option name="totallyTimeSpent" value="4792000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -169,11 +160,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="244" column="22" lean-forward="true" selection-start-line="244" selection-start-column="22" selection-end-line="244" selection-end-column="22" />
+        <state relative-caret-position="272">
+          <caret line="101" column="155" selection-start-line="101" selection-start-column="155" selection-end-line="101" selection-end-column="155" />
           <folding>
-            <element signature="e#4931#4935#0" expanded="true" />
-            <element signature="e#4951#4955#0" expanded="true" />
+            <element signature="e#4001#4005#0" expanded="true" />
+            <element signature="e#4015#4019#0" expanded="true" />
+            <element signature="e#4022#4026#0" expanded="true" />
+            <element signature="e#4033#4037#0" expanded="true" />
+            <element signature="e#4048#4052#0" expanded="true" />
+            <element signature="e#4060#4064#0" expanded="true" />
+            <element signature="e#4067#4071#0" expanded="true" />
+            <element signature="e#4081#4085#0" expanded="true" />
+            <element signature="e#4094#4098#0" expanded="true" />
+            <element signature="e#4109#4113#0" expanded="true" />
+            <element signature="e#4116#4120#0" expanded="true" />
+            <element signature="e#4127#4131#0" expanded="true" />
+            <element signature="e#4136#4140#0" expanded="true" />
+            <element signature="e#4148#4152#0" expanded="true" />
+            <element signature="e#4153#4157#0" expanded="true" />
+            <element signature="e#4168#4172#0" expanded="true" />
           </folding>
         </state>
       </provider>
