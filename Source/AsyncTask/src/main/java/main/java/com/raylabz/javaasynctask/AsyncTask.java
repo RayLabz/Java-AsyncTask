@@ -2,24 +2,29 @@ package main.java.com.raylabz.javaasynctask;
 
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-
-import java.util.ArrayList;
 
 /**
- * Implements the Android SDK AsyncTask for plain Java applications, as found in
+ * Implements the Android SDK AsyncTask for Java FX applications, as found in
  * https://developer.android.com/reference/android/os/AsyncTask.
  *
- * Important note: Do not use this with the Android SDK, use the native AsyncTask instead.
- * This package is destined for use in plain Java applications ONLY - Java SDKs are NOT supported.
+ * Important note:
+ * This package is destined for use in Java FX applications ONLY - Other Java applications are NOT supported.
  *
  * Created by RayLabz - 2019
+ * @version 1.1.0
  * Visit http://www.RayLabz.com
  *
  * Java AsyncTask - A port of Android SDK's AsyncTask for plain Java.
  * Perform background operations and publish results on the UI thread without working with threads and handlers.
  * Repository: https://github.com/RayLabz/Java-AsyncTask
  * Guide: https://RayLabz.github.io/Java-AsyncTask
+ */
+
+/**
+ * Enables running background operations and publishing their results on the main (UI) thread.
+ * @param <Parameter> The type of parameters.
+ * @param <Progress> The type of progress updates.
+ * @param <Result> The type of result.
  */
 public abstract class AsyncTask <Parameter, Progress, Result> {
 
@@ -32,25 +37,33 @@ public abstract class AsyncTask <Parameter, Progress, Result> {
         RUNNING
     }
 
-    private static final String ASYNCTASK_THREAD_NAME_IDENTIFIER = "com.RayLabz.javaasynctask-Thread";
-    private static final ArrayList<AsyncTask> tasks = new ArrayList<>();
-    private static long ASYNCTASK_THREAD_NEXT_ID = 0;
-    private static JFXPanel FX_PANEL_INIT;
+    /**
+     * Used to identify a AsyncTask thread. Mainly used for debugging purposes.
+     */
+    private static final String ASYNCTASK_THREAD_NAME_IDENTIFIER = AsyncTask.class.getName() + "-Thread";
 
+    /**
+     * Identifies an AsyncTask thread using an ID.
+     */
+    private static long ASYNCTASK_THREAD_NEXT_ID = 0;
+
+    /**
+     * Models the AsyncTask status.
+     */
     private Status status;
+
+    /**
+     * The task's thread.
+     */
     private Thread taskThread;
-    private boolean finalized = false;
 
     /**
      * Creates an {@link AsyncTask}.
      */
     protected AsyncTask() {
-        if (FX_PANEL_INIT == null) {
-            FX_PANEL_INIT = new JFXPanel();
-        }
+        PlatformImpl.startup(() -> { /*Do nothing*/ });
         ASYNCTASK_THREAD_NEXT_ID++;
         status = Status.PENDING;
-        tasks.add(this);
     }
 
     /**
@@ -107,23 +120,7 @@ public abstract class AsyncTask <Parameter, Progress, Result> {
                 status = Status.RUNNING;
                 final Result result = doInBackground(parameters);
                 status = Status.FINISHED;
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        onPostExecute(result);
-                        finalized = true;
-                        boolean allFinalized = true;
-                        for (AsyncTask task : tasks) {
-                            if (!task.finalized) {
-                                allFinalized = false;
-                                break;
-                            }
-                        }
-                        if (allFinalized) {
-                            PlatformImpl.tkExit();
-                        }
-                    }
-                });
+                Platform.runLater(() -> onPostExecute(result));
             }
         });
         taskThread.setName(ASYNCTASK_THREAD_NAME_IDENTIFIER + ASYNCTASK_THREAD_NEXT_ID);
