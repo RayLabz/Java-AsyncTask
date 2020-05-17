@@ -28,23 +28,22 @@
                 <img class="responsive-img" src="images/asynctask-logo.png" width="200" />
             </div>
             <div class="row center">
-                <h5 class="header col s12 light">A port of Android SDK's AsyncTask for plain Java.</h5>
+                <h5 class="header col s12 light">A port of Android SDK's AsyncTask for Java FX applications.</h5>
             </div>
             <div class="row center">
-                <a href="https://github.com/panickapps/Java-AsyncTask/raw/master/Downloads/AsyncTask.jar" id="download-button"
+                <a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/raylabz/AsyncTask/1.1.0/AsyncTask-1.1.0.jar" id="download-button"
                    class="btn-large waves-effect waves-light purple darken-2">Download</a>
             </div>
 
             <p class="justify">
                 AsyncTask is a utility library that ports the <a href="https://developer.android.com/reference/android/os/AsyncTask.html">Android SDK's AsyncTask class</a>
-                for use in plain Java applications.
+                for use in Java FX applications.
             </p>
 
-            <p>It enables the easier use of threads in Java applications by allowing you to perform operations on non-UI
+            <p>It enables the easier use of threads in Java FX applications by allowing you to perform operations on non-UI
                 threads and publish their results on the UI thread without having to deal with Threads, Executors and Handlers.
-                AsyncTask does not follow any framework or specific SDK, so you can use it in any plain Java (or Java EE)
-                application. However, it should not be used within the Android SDK, where the use of the native AsyncTask
-                class should be highly preferred.
+                AsyncTask does not follow any framework or specific SDK, so you can use it in any Java FX
+                application.
             </p>
 
             <p><b>The package requires Java 8+</b></p>
@@ -80,7 +79,7 @@
 
             <h5 id="downloadAndImport">Download and import</h5>
 
-            <p>You can automatically import Java-AsyncTask in your project using Maven or Gradle:</p>
+            <p>You can automatically import AsyncTask in your project using Maven or Gradle:</p>
 
             <p><b><u>Maven:</u></b></p>
 
@@ -88,18 +87,18 @@
 &lt;dependency&gt;
   &lt;groupId&gt;com.raylabz&lt;/groupId&gt;
   &lt;artifactId&gt;AsyncTask&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;version&gt;1.1.0&lt;/version&gt;
 &lt;/dependency&gt;</pre>
 
             <p><b><u>Gradle:</u></b></p>
 
-            <pre class="prettyprint">implementation 'com.raylabz:AsyncTask:1.0.0'</pre>
+            <pre class="prettyprint">implementation 'com.raylabz:AsyncTask:1.1.0'</pre>
 
             <p>
-                Alternatively, you can download Java-HTTP as a .jar library:
+                Alternatively, you can download AsyncTask as a .jar library:
             </p>
 
-            <a class="btn purple darken-2" href="https://github.com/RayLabz/Java-AsyncTask/raw/master/Downloads/AsyncTask.jar">Download .jar</a>
+            <a class="btn purple darken-2" href="https://oss.sonatype.org/service/local/repositories/releases/content/com/raylabz/AsyncTask/1.1.0/AsyncTask-1.1.0.jar">Download .jar</a>
 
             <h5 id="createAsyncTask">Creating an AsyncTask</h5>
 
@@ -117,7 +116,7 @@ public class MyAsyncTask extends AsyncTask&lt;Void, Void, Void&gt; {
     ...
 }</pre>
 
-            <p>Note that the AsyncTask class takes three templated type arguments just like the Android AsyncTask, which are:</p>
+            <p>Note that the AsyncTask class takes three generic type arguments just like the Android AsyncTask, which are:</p>
 
             <ul class="browser-default">
                 <li>Parameter type</li>
@@ -127,7 +126,7 @@ public class MyAsyncTask extends AsyncTask&lt;Void, Void, Void&gt; {
 
             <h5 id="implementMethods">Implementing the methods</h5>
 
-            <p>You can freely define your own methods and attributes in any subclass you create. However, you MUST
+            <p>You can freely define your own methods and attributes in any AsyncTask you create. However, every class you create must
                 implement the following three methods provided by the base class:</p>
 
             <ul class="browser-default">
@@ -233,6 +232,14 @@ protected Void doInBackground(Void... voids) {
     }
     return null;
 }</pre>
+
+            <p><b>
+                Important note: Java FX applications will hang (not close) when using AsyncTask because AsyncTask utilizes the FX
+                components to execute code on the main thread. To close your application, you will need to exit when
+                a JFrame is closed using <span class="code">setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)</span> or explicitly
+                exit your application at any time using <span class="code">PlatformImpl.tkExit()</span> or <span class="code">System.exit()</span>.
+            </b>
+            </p>
 
             <h4 id="example">Full example</h4>
 
